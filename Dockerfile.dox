@@ -1,0 +1,17 @@
+# Use uma imagem base que contenha PHP e Apache
+FROM php:apache
+
+# Instale as extensões do PHP necessárias
+RUN docker-php-ext-install pdo pdo_mysql
+
+# Instale o cliente MySQL
+RUN apt-get update && apt-get install -y mysql-client
+
+# Copie seus arquivos PHP para o diretório de trabalho do Apache
+COPY ./seu_app_php/ /var/www/html/
+
+# Exponha a porta 80 para acesso web
+EXPOSE 80
+
+# Inicie o servidor Apache quando o contêiner for iniciado
+CMD ["apache2-foreground"]
