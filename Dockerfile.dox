@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y mysql-client
 
 # Copiando os arquivos PHP para o diretório de trabalho do Apache
 COPY ./config_php/ /var/www/html/
+COPY ./Atv_Software.sql /docker-entrypoint-initdb.d/
 
 # Expondo a porta 80 para acesso web
 EXPOSE 80
